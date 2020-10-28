@@ -45,7 +45,7 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun provideCharacterDao(db: AppDatabase) = db.weatherDao()
+    fun provideWeatherDao(db: AppDatabase) = db.weatherDao()
 
     @Singleton
     @Provides
