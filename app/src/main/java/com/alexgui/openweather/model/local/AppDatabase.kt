@@ -1,12 +1,12 @@
 package com.alexgui.openweather.model.local
 
 import android.content.Context
-import androidx.room.Database
-import androidx.room.Room
-import androidx.room.RoomDatabase
+import androidx.room.*
 import com.alexgui.openweather.model.data.Weather
+import com.alexgui.openweather.utils.Converters
 
 @Database(entities = [Weather::class], version = 1, exportSchema = false)
+@TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun weatherDao(): WeatherDao
@@ -18,7 +18,7 @@ abstract class AppDatabase : RoomDatabase() {
             instance ?: synchronized(this) { instance ?: buildDatabase(context).also { instance = it } }
 
         private fun buildDatabase(appContext: Context) =
-            Room.databaseBuilder(appContext, AppDatabase::class.java, "characters")
+            Room.databaseBuilder(appContext, AppDatabase::class.java, "weather")
                 .fallbackToDestructiveMigration()
                 .build()
     }
