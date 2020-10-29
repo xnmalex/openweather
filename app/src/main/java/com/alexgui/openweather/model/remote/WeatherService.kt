@@ -9,7 +9,9 @@ import retrofit2.http.Query
 interface WeatherService {
 
     @GET("forecast")
-    suspend fun getWeatherByZipCode(@Query("zip") zip:String?= "94040,us", @Query("appid") appid:String = ApiEndPoint.API_KEY) : Response<WeatherResponse>
+    suspend fun getWeatherByZipCode(@Query("id") id:String?= ApiEndPoint.CITY_ID,
+                                    @Query("appid") appid:String = ApiEndPoint.API_KEY,
+                                    @Query("units") units:String = ApiEndPoint.UNITS) : Response<WeatherResponse>
 
     @GET("")
     suspend fun getWeatherByLatLng() : Response<WeatherResponse>
