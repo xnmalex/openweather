@@ -1,13 +1,14 @@
 package com.alexgui.openweather.ui
 
 import android.annotation.SuppressLint
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.alexgui.openweather.ApiEndPoint
 import com.alexgui.openweather.databinding.ItemWeatherBinding
 import com.alexgui.openweather.model.data.Weather
+import com.squareup.picasso.Picasso
 
 class WeatherAdapter(private val listener: WeatherItemListener) : RecyclerView.Adapter<WeatherViewHolder>(){
     interface WeatherItemListener {
@@ -45,12 +46,12 @@ class WeatherViewHolder(private val itemBinding: ItemWeatherBinding, private val
     @SuppressLint("SetTextI18n")
     fun bind(item: Weather) {
         this.weather = item
-        itemBinding.temp.text = "Temperature: ${item.main?.temp}"
+        itemBinding.temp.text = "Temperature: ${item.main?.temp}°C"
         itemBinding.datetime.text = item.dt_txt
-//        Glide.with(itemBinding.root)
-//            .load(item.image)
-//            .transform(CircleCrop())
-//            .into(itemBinding.image)
+        itemBinding.description.text = "${item.weather?.get(0)?.main} - ${item.weather?.get(0)?.description}"
+        Picasso.get().load(ApiEndPoint.ICON_URL+"${item.weather?.get(0)?.icon}.png")
+            .into(itemBinding.image)
+
     }
 
     override fun onClick(v: View?) {
