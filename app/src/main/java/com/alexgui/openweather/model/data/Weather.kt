@@ -14,7 +14,7 @@ data class Weather(
     @Embedded
     val main: WeatherMain?,
 
-    @SerializedName("weather_items")
+    @SerializedName("weather")
     @Expose
     val weather: List<WeatherItem>?,
 
