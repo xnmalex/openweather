@@ -52,6 +52,9 @@ class WeatherViewHolder(private val itemBinding: ItemWeatherBinding, private val
         Picasso.get().load(ApiEndPoint.ICON_URL+"${item.weather?.get(0)?.icon}.png")
             .into(itemBinding.image)
 
+        itemBinding.min.text = "Min: ${item.main?.temp_min}°C"
+        itemBinding.max.text = "Max: ${item.main?.temp_max}°C"
+
     }
 
     override fun onClick(v: View?) {
