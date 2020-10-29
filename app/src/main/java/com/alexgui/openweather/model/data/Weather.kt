@@ -9,35 +9,35 @@ import com.google.gson.annotations.SerializedName
 @Entity(tableName = "weather")
 data class Weather(
     @PrimaryKey(autoGenerate = true)
-    val dt:Long,
+    val dt:Long?,
 
     @Embedded
-    val main: WeatherMain,
+    val main: WeatherMain?,
 
     @SerializedName("weather_items")
     @Expose
-    val weather: List<WeatherItem>,
+    val weather: List<WeatherItem>?,
 
     @Embedded
-    val clouds: Cloud,
+    val clouds: Cloud?,
 
     @Embedded
-    val wind: Wind,
+    val wind: Wind?,
 
-    val visibility: Int,
-    val pop: Int,
+    val visibility: Int?,
+    val pop: Int?,
 
     @Embedded
-    val sys: Sys,
-    val dt_txt:String
+    val sys: Sys?,
+    val dt_txt:String?
 )
 
 
 data class WeatherMain(
     val temp: Double,
     val feels_like: Double,
-    val temp_min: Double,
-    val temp_max: Double,
+    val temp_min: Double?,
+    val temp_max: Double?,
     val pressure: Int,
     val sea_level: Int,
     val grnd_level: Int,
