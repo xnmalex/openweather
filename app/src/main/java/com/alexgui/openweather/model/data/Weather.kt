@@ -25,7 +25,7 @@ data class Weather(
     val wind: Wind?,
 
     val visibility: Int?,
-    val pop: Int?,
+    val pop: Double?,
 
     @Embedded
     val sys: Sys?,

@@ -5,7 +5,7 @@ import androidx.room.*
 import com.alexgui.openweather.model.data.Weather
 import com.alexgui.openweather.utils.Converters
 
-@Database(entities = [Weather::class], version = 1, exportSchema = false)
+@Database(entities = [Weather::class], version = 2, exportSchema = false)
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
 
