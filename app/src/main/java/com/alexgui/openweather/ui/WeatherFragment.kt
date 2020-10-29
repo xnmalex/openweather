@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.alexgui.openweather.databinding.FragmentWeatherBinding
 import com.alexgui.openweather.utils.Resource
@@ -38,6 +39,12 @@ class WeatherFragment : Fragment(), WeatherAdapter.WeatherItemListener {
     private fun setupRecyclerView() {
         adapter = WeatherAdapter(this)
         binding.weatherRv.layoutManager = LinearLayoutManager(requireContext())
+        binding.weatherRv.addItemDecoration(
+            DividerItemDecoration(
+                context,
+                LinearLayoutManager.VERTICAL
+            )
+        )
         binding.weatherRv.adapter = adapter
     }
 

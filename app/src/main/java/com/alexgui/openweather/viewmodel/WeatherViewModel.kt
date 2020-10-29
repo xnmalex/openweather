@@ -12,6 +12,4 @@ class WeatherViewModel @ViewModelInject constructor(
 ): ViewModel(){
     val weatherList : LiveData<Resource<List<Weather>>> = weatherRepository.getWeatherList();
 
-    //("debug", ""+weatherList);
-
 }

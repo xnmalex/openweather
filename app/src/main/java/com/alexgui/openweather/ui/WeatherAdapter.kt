@@ -1,6 +1,7 @@
 package com.alexgui.openweather.ui
 
 import android.annotation.SuppressLint
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -44,8 +45,8 @@ class WeatherViewHolder(private val itemBinding: ItemWeatherBinding, private val
     @SuppressLint("SetTextI18n")
     fun bind(item: Weather) {
         this.weather = item
-        itemBinding.name.text = ""+item.main.temp
-        //itemBinding.speciesAndStatus.text = """${item.species} - ${item.status}"""
+        itemBinding.temp.text = "Temperature: ${item.main?.temp}"
+        itemBinding.datetime.text = item.dt_txt
 //        Glide.with(itemBinding.root)
 //            .load(item.image)
 //            .transform(CircleCrop())
