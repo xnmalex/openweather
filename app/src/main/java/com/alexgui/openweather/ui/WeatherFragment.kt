@@ -34,6 +34,7 @@ class WeatherFragment : Fragment(), WeatherAdapter.WeatherItemListener {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
         setupObservers()
+        setupSwipeToRefresh()
     }
 
     private fun setupRecyclerView() {
@@ -51,27 +52,39 @@ class WeatherFragment : Fragment(), WeatherAdapter.WeatherItemListener {
     private fun setupObservers() {
         viewModel.weatherList.observe(viewLifecycleOwner, Observer {
             when (it.status) {
+
                 Resource.Status.SUCCESS -> {
                     binding.progressBar.visibility = View.GONE
                     if (!it.data.isNullOrEmpty()) adapter.setItems(ArrayList(it.data))
                 }
-                Resource.Status.ERROR ->
+                Resource.Status.ERROR -> {
                     Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
+                }
 
-                Resource.Status.LOADING ->
+                Resource.Status.LOADING -> {
                     binding.progressBar.visibility = View.VISIBLE
+
+                }
             }
+
+
         })
     }
+
+    private fun setupSwipeToRefresh(){
+        binding.swiperefresh.setOnRefreshListener {
+
+            // This method performs the actual data-refresh operation.
+            // The method calls setRefreshing(false) when it's finished.
+            binding.swiperefresh.isRefreshing = true
+            setupObservers()
+            binding.swiperefresh.isRefreshing = false
+        }
+    }
+
 
     override fun onClickedWeather(weatherId: Int) {
         TODO("Not yet implemented")
     }
 
-//    override fun onClickedCharacter(characterId: Int) {
-//        findNavController().navigate(
-//            R.id.action_charactersFragment_to_characterDetailFragment,
-//            bundleOf("id" to characterId)
-//        )
-//    }
 }
